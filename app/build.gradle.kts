@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.denysrandy_comp304002_lab04"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.denysrandy_comp304002_lab04"
