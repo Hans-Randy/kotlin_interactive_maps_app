@@ -50,7 +50,7 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
                     Log.i(TAG, "Entered geofence")
                     sendNotification(
                         context,
-                        "Welcome to the Arena! 🏀",
+                        "Welcome to the Arena!",
                         "You've entered the vicinity of an NBA arena. Enjoy the game!"
                     )
                 }
@@ -58,7 +58,7 @@ class GeofenceBroadcastReceiver : BroadcastReceiver() {
                     Log.i(TAG, "Exited geofence")
                     sendNotification(
                         context,
-                        "Leaving the Arena 👋",
+                        "Leaving the Arena",
                         "Thanks for visiting! Come back soon for more basketball action."
                     )
                 }

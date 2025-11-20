@@ -1,6 +1,7 @@
 package com.example.denysrandy_comp304002_lab04.data
 
 import android.os.Parcelable
+import com.example.denysrandy_comp304002_lab04.R
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.parcelize.Parcelize
 
@@ -12,7 +13,7 @@ import kotlinx.parcelize.Parcelize
  * @param arenaName Name of the team's home arena
  * @param arenaLocation GPS coordinates of the arena
  * @param divisionId ID of the division this team belongs to
- * @param logoEmoji Emoji representation of the team
+ * @param logoResId Drawable resource ID for the team logo
  */
 @Parcelize
 data class NBATeam(
@@ -22,7 +23,7 @@ data class NBATeam(
     val arenaName: String,
     val arenaLocation: LatLng,
     val divisionId: String,
-    val logoEmoji: String,
+    val logoResId: Int,
     val founded: Int
 ) : Parcelable
 
@@ -40,7 +41,7 @@ object NBATeamsRepository {
             arenaName = "TD Garden",
             arenaLocation = LatLng(42.366303, -71.062228),
             divisionId = "atlantic",
-            logoEmoji = "🍀",
+            logoResId = R.drawable.logo_celtics,
             founded = 1946
         ),
         NBATeam(
@@ -50,7 +51,7 @@ object NBATeamsRepository {
             arenaName = "Barclays Center",
             arenaLocation = LatLng(40.682661, -73.975225),
             divisionId = "atlantic",
-            logoEmoji = "🏀",
+            logoResId = R.drawable.logo_nets,
             founded = 1967
         ),
         NBATeam(
@@ -60,7 +61,7 @@ object NBATeamsRepository {
             arenaName = "Madison Square Garden",
             arenaLocation = LatLng(40.750504, -73.993439),
             divisionId = "atlantic",
-            logoEmoji = "🗽",
+            logoResId = R.drawable.logo_knicks,
             founded = 1946
         ),
         NBATeam(
@@ -70,7 +71,7 @@ object NBATeamsRepository {
             arenaName = "Wells Fargo Center",
             arenaLocation = LatLng(39.901176, -75.171925),
             divisionId = "atlantic",
-            logoEmoji = "🔔",
+            logoResId = R.drawable.logo_76ers,
             founded = 1946
         ),
         NBATeam(
@@ -80,7 +81,7 @@ object NBATeamsRepository {
             arenaName = "Scotiabank Arena",
             arenaLocation = LatLng(43.643466, -79.379180),
             divisionId = "atlantic",
-            logoEmoji = "🦖",
+            logoResId = R.drawable.logo_raptors,
             founded = 1995
         )
     )
@@ -94,7 +95,7 @@ object NBATeamsRepository {
             arenaName = "United Center",
             arenaLocation = LatLng(41.880695, -87.674176),
             divisionId = "central",
-            logoEmoji = "🐂",
+            logoResId = R.drawable.logo_bulls,
             founded = 1966
         ),
         NBATeam(
@@ -104,7 +105,7 @@ object NBATeamsRepository {
             arenaName = "Rocket Mortgage FieldHouse",
             arenaLocation = LatLng(41.496483, -81.688047),
             divisionId = "central",
-            logoEmoji = "⚔️",
+            logoResId = R.drawable.logo_cavaliers,
             founded = 1970
         ),
         NBATeam(
@@ -114,7 +115,7 @@ object NBATeamsRepository {
             arenaName = "Little Caesars Arena",
             arenaLocation = LatLng(42.341083, -83.055031),
             divisionId = "central",
-            logoEmoji = "🏭",
+            logoResId = R.drawable.logo_pistons,
             founded = 1941
         ),
         NBATeam(
@@ -124,7 +125,7 @@ object NBATeamsRepository {
             arenaName = "Gainbridge Fieldhouse",
             arenaLocation = LatLng(39.763954, -86.155535),
             divisionId = "central",
-            logoEmoji = "🏎️",
+            logoResId = R.drawable.logo_pacers,
             founded = 1967
         ),
         NBATeam(
@@ -134,7 +135,7 @@ object NBATeamsRepository {
             arenaName = "Fiserv Forum",
             arenaLocation = LatLng(43.045021, -87.917175),
             divisionId = "central",
-            logoEmoji = "🦌",
+            logoResId = R.drawable.logo_bucks,
             founded = 1968
         )
     )
@@ -148,7 +149,7 @@ object NBATeamsRepository {
             arenaName = "State Farm Arena",
             arenaLocation = LatLng(33.757222, -84.396389),
             divisionId = "southeast",
-            logoEmoji = "🦅",
+            logoResId = R.drawable.logo_hawks,
             founded = 1946
         ),
         NBATeam(
@@ -158,7 +159,7 @@ object NBATeamsRepository {
             arenaName = "Spectrum Center",
             arenaLocation = LatLng(35.225069, -80.839233),
             divisionId = "southeast",
-            logoEmoji = "🐝",
+            logoResId = R.drawable.logo_hornets,
             founded = 1988
         ),
         NBATeam(
@@ -168,7 +169,7 @@ object NBATeamsRepository {
             arenaName = "Kaseya Center",
             arenaLocation = LatLng(25.781389, -80.188056),
             divisionId = "southeast",
-            logoEmoji = "🔥",
+            logoResId = R.drawable.logo_heat,
             founded = 1988
         ),
         NBATeam(
@@ -178,7 +179,7 @@ object NBATeamsRepository {
             arenaName = "Amway Center",
             arenaLocation = LatLng(28.539167, -81.383611),
             divisionId = "southeast",
-            logoEmoji = "✨",
+            logoResId = R.drawable.logo_magic,
             founded = 1989
         ),
         NBATeam(
@@ -188,7 +189,7 @@ object NBATeamsRepository {
             arenaName = "Capital One Arena",
             arenaLocation = LatLng(38.898056, -77.020833),
             divisionId = "southeast",
-            logoEmoji = "🧙",
+            logoResId = R.drawable.logo_wizards,
             founded = 1961
         )
     )
@@ -202,7 +203,7 @@ object NBATeamsRepository {
             arenaName = "Ball Arena",
             arenaLocation = LatLng(39.748611, -105.007500),
             divisionId = "northwest",
-            logoEmoji = "⛰️",
+            logoResId = R.drawable.logo_nuggets,
             founded = 1967
         ),
         NBATeam(
@@ -212,7 +213,7 @@ object NBATeamsRepository {
             arenaName = "Target Center",
             arenaLocation = LatLng(44.979444, -93.276111),
             divisionId = "northwest",
-            logoEmoji = "🐺",
+            logoResId = R.drawable.logo_timberwolves,
             founded = 1989
         ),
         NBATeam(
@@ -222,7 +223,7 @@ object NBATeamsRepository {
             arenaName = "Paycom Center",
             arenaLocation = LatLng(35.463333, -97.515000),
             divisionId = "northwest",
-            logoEmoji = "⚡",
+            logoResId = R.drawable.logo_thunder,
             founded = 1967
         ),
         NBATeam(
@@ -232,7 +233,7 @@ object NBATeamsRepository {
             arenaName = "Moda Center",
             arenaLocation = LatLng(45.531667, -122.666667),
             divisionId = "northwest",
-            logoEmoji = "🌲",
+            logoResId = R.drawable.logo_blazers,
             founded = 1970
         ),
         NBATeam(
@@ -242,7 +243,7 @@ object NBATeamsRepository {
             arenaName = "Delta Center",
             arenaLocation = LatLng(40.768333, -111.901111),
             divisionId = "northwest",
-            logoEmoji = "🎵",
+            logoResId = R.drawable.logo_jazz,
             founded = 1974
         )
     )
@@ -256,7 +257,7 @@ object NBATeamsRepository {
             arenaName = "Chase Center",
             arenaLocation = LatLng(37.768056, -122.387500),
             divisionId = "pacific",
-            logoEmoji = "🌉",
+            logoResId = R.drawable.logo_warriors,
             founded = 1946
         ),
         NBATeam(
@@ -266,7 +267,7 @@ object NBATeamsRepository {
             arenaName = "Crypto.com Arena",
             arenaLocation = LatLng(34.043056, -118.267222),
             divisionId = "pacific",
-            logoEmoji = "⛵",
+            logoResId = R.drawable.logo_clippers,
             founded = 1970
         ),
         NBATeam(
@@ -276,7 +277,7 @@ object NBATeamsRepository {
             arenaName = "Crypto.com Arena",
             arenaLocation = LatLng(34.043056, -118.267222),
             divisionId = "pacific",
-            logoEmoji = "💜",
+            logoResId = R.drawable.logo_lakers,
             founded = 1947
         ),
         NBATeam(
@@ -286,7 +287,7 @@ object NBATeamsRepository {
             arenaName = "Footprint Center",
             arenaLocation = LatLng(33.445833, -112.071389),
             divisionId = "pacific",
-            logoEmoji = "☀️",
+            logoResId = R.drawable.logo_suns,
             founded = 1968
         ),
         NBATeam(
@@ -296,7 +297,7 @@ object NBATeamsRepository {
             arenaName = "Golden 1 Center",
             arenaLocation = LatLng(38.580278, -121.499722),
             divisionId = "pacific",
-            logoEmoji = "👑",
+            logoResId = R.drawable.logo_kings,
             founded = 1923
         )
     )
@@ -310,7 +311,7 @@ object NBATeamsRepository {
             arenaName = "American Airlines Center",
             arenaLocation = LatLng(32.790556, -96.810278),
             divisionId = "southwest",
-            logoEmoji = "🐴",
+            logoResId = R.drawable.logo_mavericks,
             founded = 1980
         ),
         NBATeam(
@@ -320,7 +321,7 @@ object NBATeamsRepository {
             arenaName = "Toyota Center",
             arenaLocation = LatLng(29.750833, -95.362222),
             divisionId = "southwest",
-            logoEmoji = "🚀",
+            logoResId = R.drawable.logo_rockets,
             founded = 1967
         ),
         NBATeam(
@@ -330,7 +331,7 @@ object NBATeamsRepository {
             arenaName = "FedExForum",
             arenaLocation = LatLng(35.138333, -90.050556),
             divisionId = "southwest",
-            logoEmoji = "🐻",
+            logoResId = R.drawable.logo_grizzlies,
             founded = 1995
         ),
         NBATeam(
@@ -340,7 +341,7 @@ object NBATeamsRepository {
             arenaName = "Smoothie King Center",
             arenaLocation = LatLng(29.948889, -90.081944),
             divisionId = "southwest",
-            logoEmoji = "🦜",
+            logoResId = R.drawable.logo_pelicans,
             founded = 2002
         ),
         NBATeam(
@@ -350,7 +351,7 @@ object NBATeamsRepository {
             arenaName = "Frost Bank Center",
             arenaLocation = LatLng(29.426944, -98.4375),
             divisionId = "southwest",
-            logoEmoji = "⭐",
+            logoResId = R.drawable.logo_spurs,
             founded = 1967
         )
     )

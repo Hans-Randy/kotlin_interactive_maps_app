@@ -13,8 +13,10 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -24,11 +26,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.denysrandy_comp304002_lab04.data.NBADivision
 import com.example.denysrandy_comp304002_lab04.data.NBATeam
@@ -39,6 +43,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.*
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 /**
  * RandyActivity - Displays the selected NBA team's arena on Google Maps
@@ -88,7 +96,7 @@ class RandyActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("MissingPermission")
+@SuppressLint("MissingPermission", "DefaultLocale", "UnrememberedMutableState")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MapScreen(
@@ -103,9 +111,9 @@ fun MapScreen(
     // State management
     var hasLocationPermission by remember { mutableStateOf(false) }
     var currentLocation by remember { mutableStateOf<LatLng?>(null) }
-    var isTrackingLocation by remember { mutableStateOf(false) }
     var geofenceAdded by remember { mutableStateOf(false) }
     var mapClickLocation by remember { mutableStateOf<LatLng?>(null) }
+    var isMapLoaded by remember { mutableStateOf(false) }
     
     // Camera position centered on arena
     val cameraPositionState = rememberCameraPositionState {
@@ -271,6 +279,9 @@ fun MapScreen(
                 cameraPositionState = cameraPositionState,
                 properties = mapProperties,
                 uiSettings = mapUiSettings,
+                onMapLoaded = {
+                    isMapLoaded = true
+                },
                 onMapClick = { latLng ->
                     mapClickLocation = latLng
                     Toast.makeText(
@@ -323,6 +334,30 @@ fun MapScreen(
                 )
             }
             
+            // Loading indicator
+            if (!isMapLoaded) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(48.dp),
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "Loading map...",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                }
+            }
+            
             // Info card at bottom
             Card(
                 modifier = Modifier
@@ -341,11 +376,23 @@ fun MapScreen(
                     Row(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = team.logoEmoji,
-                            style = MaterialTheme.typography.headlineMedium,
-                            modifier = Modifier.padding(end = 12.dp)
-                        )
+                        Box(
+                            modifier = Modifier
+                                .size(50.dp)
+                                .clip(CircleShape)
+                                .background(Color.White),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = team.logoResId),
+                                contentDescription = "${team.name} logo",
+                                modifier = Modifier
+                                    .size(45.dp)
+                                    .padding(4.dp),
+                                contentScale = ContentScale.Fit
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
                         Column {
                             Text(
                                 text = team.name,
@@ -514,12 +561,12 @@ fun calculateDistance(start: LatLng, end: LatLng): Double {
     val dLat = Math.toRadians(end.latitude - start.latitude)
     val dLon = Math.toRadians(end.longitude - start.longitude)
     
-    val a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(Math.toRadians(start.latitude)) *
-            Math.cos(Math.toRadians(end.latitude)) *
-            Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    val a = sin(dLat / 2) * sin(dLat / 2) +
+            cos(Math.toRadians(start.latitude)) *
+            cos(Math.toRadians(end.latitude)) *
+            sin(dLon / 2) * sin(dLon / 2)
     
-    val c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+    val c = 2 * atan2(sqrt(a), sqrt(1 - a))
     
     return earthRadius * c
 }
