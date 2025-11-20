@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">DenysRandy_COMP304002_Lab04</string>
+    <string name="app_name">NBA Arena Explorer</string>
+    <string name="divisions_title">NBA Divisions</string>
+    <string name="teams_title">NBA Teams</string>
+    <string name="map_title">Arena Location</string>
+    <string name="permission_rationale">Location permission is needed to show your position on the map and enable geofencing features.</string>
+    <string name="geofence_enter_title">Welcome to the Arena! 🏀</string>
+    <string name="geofence_enter_message">You\'ve entered the vicinity of an NBA arena. Enjoy the game!</string>
+    <string name="geofence_exit_title">Leaving the Arena 👋</string>
+    <string name="geofence_exit_message">Thanks for visiting! Come back soon for more basketball action.</string>
 </resources>

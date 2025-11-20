@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Location permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    
+    <!-- Background location permission (for geofencing) -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    
+    <!-- Internet permission for Google Maps -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    
+    <!-- Notification permission for Android 13+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DenysRandy_COMP304002_Lab04"
         tools:targetApi="31">
+        
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+        
+        <!-- Main Activity - NBA Divisions List -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -19,10 +40,32 @@
             android:theme="@style/Theme.DenysRandy_COMP304002_Lab04">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <!-- Denys Activity - Teams List -->
+        <activity
+            android:name=".DenysActivity"
+            android:exported="false"
+            android:label="NBA Teams"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Theme.DenysRandy_COMP304002_Lab04" />
+        
+        <!-- Randy Activity - Map View -->
+        <activity
+            android:name=".RandyActivity"
+            android:exported="false"
+            android:label="Arena Location"
+            android:parentActivityName=".DenysActivity"
+            android:theme="@style/Theme.DenysRandy_COMP304002_Lab04" />
+        
+        <!-- Geofence Broadcast Receiver -->
+        <receiver
+            android:name=".GeofenceBroadcastReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        
     </application>
 
 </manifest>
